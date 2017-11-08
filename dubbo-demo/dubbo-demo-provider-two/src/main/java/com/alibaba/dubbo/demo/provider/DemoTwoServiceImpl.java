@@ -15,25 +15,18 @@
  */
 package com.alibaba.dubbo.demo.provider;
 
-import com.alibaba.dubbo.demo.DemoService;
 import com.alibaba.dubbo.demo.DemoTwoService;
 import com.alibaba.dubbo.rpc.RpcContext;
 
-import org.springframework.stereotype.Repository;
-
-import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-@Repository
-public class DemoServiceImpl implements DemoService {
-    @Resource(name = "demoTwoService")
-    private DemoTwoService demoTwoService;
-    public String sayHello(String name) {
+
+public class DemoTwoServiceImpl implements DemoTwoService {
+
+    @Override
+    public String hahaha(String name) {
         System.out.println("[" + new SimpleDateFormat("HH:mm:ss").format(new Date()) + "] Hello " + name + ", request from consumer: " + RpcContext.getContext().getRemoteAddress());
-        String ahahah= demoTwoService.hahaha("233242332");
-        System.out.println("测试得到数据--=="+ahahah);
-        return ahahah;
+        return "hahahahahahahaha  11111111 " + name + ", response form provider: " + RpcContext.getContext().getLocalAddress();
+
     }
-
-
 }

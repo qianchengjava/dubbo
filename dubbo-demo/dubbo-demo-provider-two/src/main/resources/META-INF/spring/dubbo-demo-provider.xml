@@ -21,19 +21,18 @@
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
     <context:component-scan base-package="com.alibaba.dubbo.demo"/>
     <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="demo-provider"/>
+    <dubbo:application name="demo-provider-two"/>
 
     <!-- 使用multicast广播注册中心暴露服务地址 -->
-    <dubbo:registry  address="zookeeper://172.16.196.244:2181"/>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:protocol name="dubbo" port="20881"/>
 
     <!-- 和本地bean一样实现服务 -->
-    <bean id="demoService" class="com.alibaba.dubbo.demo.provider.DemoServiceImpl"/>
+    <bean id="demoTwoService" class="com.alibaba.dubbo.demo.provider.DemoTwoServiceImpl"/>
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.alibaba.dubbo.demo.DemoService" ref="demoService"/>
-    <dubbo:reference id="demoTwoService" check="false" interface="com.alibaba.dubbo.demo.DemoTwoService"/>
+    <dubbo:service interface="com.alibaba.dubbo.demo.DemoTwoService" ref="demoTwoService"/>
 
 </beans>
